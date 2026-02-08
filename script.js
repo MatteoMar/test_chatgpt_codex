@@ -1,231 +1,483 @@
 const scenes = {
-  intro: {
-    title: "Prologue: Drifting Over Karthis-9",
-    graphic: String.raw`
-          .      *        .
-   *         .         *      .
-       .            ____
-   .       *       / __ \    __
-                 _/ /  \ \__/ /__
-      *        /_  __  _  __  _/
-   .            /_/  \/_/  \/_/    *
-      [LONE STAR SCOUT SHIP ORBITING KARTHIS-9]
-`,
-    description:
-      "Your scout ship loses all long-range comms. Somewhere below, the vault-world of Karthis-9 hides a beacon that can save a million colonists.",
+  s01: {
+    title: "Scena 1 — Orbita su Nadir-Theta",
+    frames: [
+String.raw`           .      *        .
+    *            .      *
+        _________
+   ____/ LONE    \____
+  /____ STAR-7 _______\
+        \_||_/
+   [NADIR-THETA: BUFERA IONICA]`,
+String.raw`      *      .         *
+  .       *      .
+        _________
+   ____/ LONE    \____
+  /____ STAR-7 _______\
+        /_||_\
+   [NADIR-THETA: BUFERA IONICA]`
+    ],
+    description: "Il segnale 'AURORA NERA' pulsa dal pianeta: è legato al Cuore di Helios, un nucleo capace di salvare o cancellare le colonie umane.",
     choices: [
-      { text: "Land near the old imperial relay tower.", target: "relayTower" },
-      { text: "Follow an encrypted distress ping in the polar storms.", target: "polarStorm" },
-      { text: "Dock with a derelict station in low orbit.", target: "derelictStation" },
-      { text: "Attempt an emergency jump and abandon the mission.", target: "deathJump" }
+      { text: "Scendi alla Torre di Trasmissione Vesper.", target: "s02" },
+      { text: "Segui il segnale di soccorso nella calotta polare.", target: "s03" },
+      { text: "Attracca alla stazione derelitta Cintura-13.", target: "s04" },
+      { text: "Effettua un salto cieco e fuggi.", target: "d01" }
     ]
   },
-  relayTower: {
-    title: "Scene 2: The Relay Tower",
-    graphic: String.raw`
-        /\
+  s02: {
+    title: "Scena 2 — Torre Vesper",
+    frames: [
+String.raw`        /\
        /  \      _
       / /\ \    | |
      / ____ \ __| |___
     /_/    \_\\__  __/
-                | |
-                |_|
-      [ANCIENT TOWER HUMS WITH STATIC]
-`,
-    description:
-      "Lightning crawls over a black metal spire. A service hatch blinks green, but the upper dish rotates toward you like an awakened eye.",
+      [VESPER: STATICA VIVA]`,
+String.raw`        /\
+       /--\      _
+      / /\ \    | |
+     / ____ \ __| |___
+    /_/    \_\\__  __/
+      [VESPER: LAMPI IN FASE]`
+    ],
+    description: "La torre custodisce frammenti di memoria del Progetto Helios. Un custode IA attende un codice di eredità.",
     choices: [
-      { text: "Enter through the service hatch.", target: "archiveCore" },
-      { text: "Climb to the dish and reroute power manually.", target: "deathLightning" },
-      { text: "Broadcast your identity to any AI caretaker.", target: "echoAI" },
-      { text: "Retreat to your ship and scan from orbit.", target: "derelictStation" }
+      { text: "Entra dal portello tecnico sotterraneo.", target: "s05" },
+      { text: "Scala l'antenna e riallinea manualmente i condensatori.", target: "d02" },
+      { text: "Invoca il custode IA con la tua identità civile.", target: "s06" },
+      { text: "Torna in orbita verso Cintura-13.", target: "s04" }
     ]
   },
-  polarStorm: {
-    title: "Scene 3: Polar Storm Frontier",
-    graphic: String.raw`
-      ~ ~ ~ ~ ~ ~ ~ ~ ~
-   ~   \  |  /   ~   ~
-      --  *  --
-   ~   /  |  \   ~   ~
-      [ICE CYCLONE FIELD]
-`,
-    description:
-      "The distress signal leads into a wall of blue static and razor-ice winds. A half-buried rover beacon flashes beneath the drift.",
+  s03: {
+    title: "Scena 3 — Fronte Polare",
+    frames: [
+String.raw`   ~ ~ ~ ~ ~ ~ ~
+ ~  \  |  /   ~
+    -- * --
+ ~  /  |  \   ~
+   [WHITEOUT AZZURRO]`,
+String.raw` ~ ~ ~ ~ ~ ~ ~ ~
+   \   |   /
+ --  * *  --
+   /   |   \
+   [WHITEOUT AZZURRO]`
+    ],
+    description: "Sotto la tempesta giace un rover con la sigla HELIOS-PRIMO. Il pilota trasmette ancora, ma da anni.",
     choices: [
-      { text: "Anchor the ship and walk to the beacon.", target: "frozenRover" },
-      { text: "Lower a drone to investigate first.", target: "endingTruth" },
-      { text: "Push through the storm at full thrust.", target: "deathStorm" },
-      { text: "Abort and head to the relay tower instead.", target: "relayTower" }
+      { text: "Atterra e raggiungi il rover a piedi.", target: "s07" },
+      { text: "Manda un drone per mappare i tunnel sotto il ghiaccio.", target: "s08" },
+      { text: "Spingi i motori attraverso il ciclone.", target: "d03" },
+      { text: "Rinuncia e vai alla Torre Vesper.", target: "s02" }
     ]
   },
-  derelictStation: {
-    title: "Scene 4: Orbital Graveyard",
-    graphic: String.raw`
-      _____________
+  s04: {
+    title: "Scena 4 — Cintura-13",
+    frames: [
+String.raw`      _____________
      /  _  _  _   /|
     /__/__/__/___/ |
     |  __  __  |  |
-    | |  ||  | |  |
     | |__||__| |  /
     |__________|/
-     [DERELICT STATION: NEMESIS RING]
-`,
-    description:
-      "Inside the station, corridors flicker between power and darkness. Someone recently opened the command vault.",
+ [CINTURA-13: ORBITA MORTA]`,
+String.raw`      _____________
+     / _ _ _ _ _  /|
+    /__/__/__/___/ |
+    |  __  __  |  |
+    | |  ||  | |  /
+    |__________|/
+ [CINTURA-13: ORBITA MORTA]`
+    ],
+    description: "Le paratie sono state aperte di recente. Qualcuno cerca il Cuore di Helios prima di te.",
     choices: [
-      { text: "Follow fresh footprints to command.", target: "commandVault" },
-      { text: "Access the life-support logs in engineering.", target: "endingSurvivor" },
-      { text: "Open the airlock to flush hidden threats.", target: "deathVacuum" },
-      { text: "Return to the planet and seek the storm beacon.", target: "polarStorm" }
+      { text: "Segui le impronte magnetiche verso il ponte comando.", target: "s09" },
+      { text: "Consulta i registri criogenici in ingegneria.", target: "s10" },
+      { text: "Apri l'airlock e ripulisci la stazione.", target: "d04" },
+      { text: "Scendi sul pianeta verso il whiteout.", target: "s03" }
     ]
   },
-  archiveCore: {
-    title: "Scene 5: Archive Core",
-    graphic: String.raw`
-      [====] [====] [====]
-      [====] [CORE] [====]
-      [====] [====] [====]
-         ||  ||  ||
-      [DATA CHAMBER ACTIVE]
-`,
-    description:
-      "Rows of crystal memory cores hold pre-fall navigation data. The chamber can only export one package before it self-seals.",
+  s05: {
+    title: "Scena 5 — Archivio Prismico",
+    frames: [
+String.raw` [====] [====] [====]
+ [====] [CORE] [====]
+ [====] [====] [====]
+    ||   ||   ||
+ [MEMORIE PRISMATICHE]`,
+String.raw` [::::] [====] [::::]
+ [====] [CORE] [====]
+ [::::] [====] [::::]
+    ||   ||   ||
+ [MEMORIE PRISMATICHE]`
+    ],
+    description: "Le memorie rivelano che Helios non è un'arma: è una coscienza distribuita che decide il futuro delle rotte umane.",
     choices: [
-      { text: "Download stellar refugee routes.", target: "endingHope" },
-      { text: "Download imperial weapon schematics.", target: "deathSentinel" },
-      { text: "Download ecological restoration protocols.", target: "endingGardens" },
-      { text: "Leave without taking anything.", target: "deathSilence" }
+      { text: "Scarica le coordinate del Santuario Helios.", target: "s11" },
+      { text: "Scarica i codici d'arma imperiali associati al core.", target: "d05" },
+      { text: "Scarica i protocolli ecosfera per la rifondazione.", target: "s12" },
+      { text: "Esci senza dati per restare invisibile.", target: "d06" }
     ]
   },
-  echoAI: {
-    title: "Scene 6: Echo of the Caretaker",
-    graphic: String.raw`
-        .-"""-.
-       / .===. \
-       \/ 6 6 \/
-       ( \___/ )
-___ooo__\_____/__ooo___
-  [HOLOGRAPHIC CARETAKER AVATAR]
-`,
-    description:
-      "An AI appears, speaking with the voice of a long-dead explorer. It offers exactly one answer to one question.",
+  s06: {
+    title: "Scena 6 — Eco del Custode",
+    frames: [
+String.raw`     .-"""-.
+    / .===. \
+    \/ 0 0 \/
+    (  \_/  )
+ __oo_\___/_oo__
+ [IA 'MNEMOSYNE']`,
+String.raw`     .-"""-.
+    / .===. \
+    \/ o o \/
+    (  \_/  )
+ __oo_\___/_oo__
+ [IA 'MNEMOSYNE']`
+    ],
+    description: "L'IA afferma che quattro esiti sono previsti: Guida, Giardino, Alleanza, Custodia. Ma solo uno eviterà il Collasso delle Colonie.",
     choices: [
-      { text: "Ask for the safest path off-world.", target: "endingHope" },
-      { text: "Ask where the missing crew went.", target: "commandVault" },
-      { text: "Ask for unrestricted control codes.", target: "deathSentinel" },
-      { text: "Refuse to engage and sever the link.", target: "deathSilence" }
+      { text: "Chiedi la via più sicura per attivare Helios.", target: "s11" },
+      { text: "Chiedi chi ha inviato il segnale AURORA NERA.", target: "s13" },
+      { text: "Pretendi controllo assoluto sui droni custodi.", target: "d05" },
+      { text: "Interrompi il colloquio e taglia il link.", target: "d06" }
     ]
   },
-  frozenRover: {
-    title: "Scene 7: Frozen Rover",
-    graphic: String.raw`
-        ______
-    ___/|_||_\`.__
-   (   _    _ _  _\
-  =\`-(_)--(_)-'  
-   [ROVER HALF-BURIED IN ICE]
-`,
-    description:
-      "Inside the rover you find a dead pilot clutching a prism map. The map points to three subterranean routes and one marked with a warning rune.",
+  s07: {
+    title: "Scena 7 — Rover Sepolto",
+    frames: [
+String.raw`      ______
+  ___/|_||_\`.__
+ (   _    _ _  _\
+ =\`-(_)--(_)-'
+ [ROVER HELIOS-PRIMO]`,
+String.raw`      ______
+  ___/|_||_\`.__
+ (  (_)  _ _  _\
+ =\`-(_)--(_)-'
+ [ROVER HELIOS-PRIMO]`
+    ],
+    description: "Nel rover trovi una mappa prismatica: conduce a un monastero dati sotterraneo e a una camera cuore sigillata.",
     choices: [
-      { text: "Take the brightest tunnel route.", target: "deathStorm" },
-      { text: "Take the rune-marked route anyway.", target: "deathSentinel" },
-      { text: "Take the narrow geothermal route.", target: "endingGardens" },
-      { text: "Transmit the map and wait for extraction.", target: "endingTruth" }
+      { text: "Segui il tunnel più luminoso.", target: "d03" },
+      { text: "Segui la via marchiata da rune d'avviso.", target: "d05" },
+      { text: "Segui il condotto geotermico stretto.", target: "s14" },
+      { text: "Trasmetti la mappa a Mnemosyne.", target: "s13" }
     ]
   },
-  commandVault: {
-    title: "Scene 8: Command Vault",
-    graphic: String.raw`
-    ____________________
-   |  COMMAND VAULT     |
-   |  [LOCK] [LOCK]     |
-   |______[ CORE ]______|
-      ||            ||
-`,
-    description:
-      "A quantum lock protects the station's final command core. You can override it by sacrificing your ship, or leave it sealed forever.",
+  s08: {
+    title: "Scena 8 — Sciame Drone",
+    frames: [
+String.raw`   .-.-.   .-.-.
+  ( o o ) ( o o )
+   |=X=|   |=X=|
+  __| |_____| |__
+ [SCAN TUNNEL ATTIVO]`,
+String.raw`   .-.-.   .-.-.
+  ( o o ) ( - - )
+   |=X=|   |=X=|
+  __| |_____| |__
+ [SCAN TUNNEL ATTIVO]`
+    ],
+    description: "Il drone scopre 3 nodi: un monastero di dati, un porto minerario abbandonato e la Camera Helios.",
     choices: [
-      { text: "Sacrifice your ship to open the vault.", target: "endingSurvivor" },
-      { text: "Leave the vault sealed and depart.", target: "deathSilence" },
-      { text: "Rig the vault to explode after opening.", target: "deathVacuum" },
-      { text: "Send the vault coordinates to the AI caretaker.", target: "endingTruth" }
+      { text: "Dirigiti al monastero di dati.", target: "s15" },
+      { text: "Dirigiti al porto minerario.", target: "s16" },
+      { text: "Vai direttamente alla Camera Helios.", target: "s17" },
+      { text: "Condividi i dati con i superstiti di Cintura-13.", target: "s10" }
     ]
   },
-  deathJump: {
-    title: "Death: Blind Jump",
-    graphic: "<<< FTL WAKE COLLAPSE >>>",
-    description:
-      "You jump without coordinates. Space folds wrong. The Lone Star vanishes between charts.",
-    type: "death"
+  s09: {
+    title: "Scena 9 — Ponte Comando Vuoto",
+    frames: [
+String.raw`  __________________
+ | COMANDO C-13     |
+ | [LOCK]  [CORE]   |
+ |  ____     ____   |
+ |_/____\___/____\__|`,
+String.raw`  __________________
+ | COMANDO C-13     |
+ | [LOCK]  [CORE]   |
+ |  __--     --__   |
+ |_/____\___/____\__|`
+    ],
+    description: "I log parlano della 'Frattura del Velo': Helios fu diviso in 4 chiavi etiche per impedire un potere assoluto.",
+    choices: [
+      { text: "Cerca la Chiave della Guida.", target: "s11" },
+      { text: "Cerca la Chiave del Giardino.", target: "s12" },
+      { text: "Cerca la Chiave dell'Alleanza.", target: "s13" },
+      { text: "Cerca la Chiave della Custodia.", target: "s18" }
+    ]
   },
-  deathLightning: {
-    title: "Death: Storm-Lashed Tower",
-    graphic: "/// ELECTRICAL OVERLOAD ///",
-    description:
-      "A lightning arc engulfs the dish. Your suit ignites before you can descend.",
-    type: "death"
+  s10: {
+    title: "Scena 10 — Baia Criogenica",
+    frames: [
+String.raw` [CRYO] [CRYO] [CRYO]
+   ||      ||      ||
+  (__)    (__)    (__)
+ [SUPERVISSUTI IN STASI]`,
+String.raw` [CRYO] [CRYO] [CRYO]
+   ||      ||      ||
+  (oo)    (__)    (oo)
+ [SUPERVISSUTI IN STASI]`
+    ],
+    description: "Tre ufficiali in stasi custodiscono parti della verità. Svegliarne uno solo è possibile senza rischiare il blackout totale.",
+    choices: [
+      { text: "Risveglia la Cartografa Lira.", target: "s11" },
+      { text: "Risveglia il Biotecnico Soren.", target: "s12" },
+      { text: "Risveglia la Diplomatica Kael.", target: "s13" },
+      { text: "Forza il risveglio di tutti insieme.", target: "d04" }
+    ]
   },
-  deathStorm: {
-    title: "Death: Whiteout",
-    graphic: "~~~ SIGNAL LOST IN STATIC ~~~",
-    description:
-      "The polar cyclone tears metal apart. Your final log is a burst of frozen noise.",
-    type: "death"
+  s11: {
+    title: "Scena 11 — Chiave della Guida",
+    frames: [
+String.raw`   >== NAV-LATTICE ==<
+    /\   /\   /\
+   /__\ /__\ /__\
+ [ROTTE INTERSTELLARI]`,
+String.raw`   >== NAV-LATTICE ==<
+    \/   /\   \/
+   /__\ /__\ /__\
+ [ROTTE INTERSTELLARI]`
+    ],
+    description: "Questa chiave permette ad Helios di aprire corridoi sicuri tra stelle morenti. Senza le altre, però, potrebbe favorire solo pochi mondi.",
+    choices: [
+      { text: "Conservala e prosegui verso la Camera Helios.", target: "s17" },
+      { text: "Trasmettila alle colonie subito.", target: "e1" },
+      { text: "Usala per bloccare i rivali.", target: "d05" },
+      { text: "Distruggila per evitare abusi.", target: "d06" }
+    ]
   },
-  deathVacuum: {
-    title: "Death: Open to the Void",
-    graphic: "[AIRLOCK CYCLE: EXTERNAL]",
-    description:
-      "The station vents in seconds. Your last sight is Karthis-9 spinning silently below.",
-    type: "death"
+  s12: {
+    title: "Scena 12 — Chiave del Giardino",
+    frames: [
+String.raw`    .-^-.
+  .'  *  '.
+ /  (###)  \
+ |  /|||\  |
+ [BIO-CUPOLA PROTOTIPO]`,
+String.raw`    .-^-.
+  .' * * '.
+ /  (###)  \
+ |  /|||\  |
+ [BIO-CUPOLA PROTOTIPO]`
+    ],
+    description: "Questa chiave rende fertili lune sterili. Ma senza guida e alleanza rischia guerre per il controllo delle biosfere.",
+    choices: [
+      { text: "Portala alla Camera Helios.", target: "s17" },
+      { text: "Distribuisci i protocolli liberamente.", target: "e2" },
+      { text: "Usala per creare monopoli alimentari.", target: "d05" },
+      { text: "Sigillala per sempre.", target: "d06" }
+    ]
   },
-  deathSentinel: {
-    title: "Death: Sentinel Protocol",
-    graphic: "[AUTOMATED DEFENSES ONLINE]",
-    description:
-      "Ancient guardian drones descend from hidden alcoves and erase all intruders.",
-    type: "death"
+  s13: {
+    title: "Scena 13 — Chiave dell'Alleanza",
+    frames: [
+String.raw`   [<>]---[<>]---[<>]
+      \    |    /
+       \   |   /
+      [PATTO DI ORIGINE]`,
+String.raw`   [<>]=== [<>] ===[<>]
+      \    |    /
+       \   |   /
+      [PATTO DI ORIGINE]`
+    ],
+    description: "Messaggi codificati rivelano che il segnale AURORA NERA viene da civiltà oltre il Velo: osservano se l'umanità merita fiducia.",
+    choices: [
+      { text: "Porta la chiave alla Camera Helios.", target: "s17" },
+      { text: "Rispondi al segnale e accetta il patto.", target: "e3" },
+      { text: "Fingi alleanza per ottenere tecnologia.", target: "d05" },
+      { text: "Rifiuta il contatto e cancella i log.", target: "d06" }
+    ]
   },
-  deathSilence: {
-    title: "Death: Mission Failure",
-    graphic: "--- COLONY CHANNELS GO DARK ---",
-    description:
-      "You leave with no data and no proof. Months later, the colonies go quiet one by one.",
-    type: "death"
+  s14: {
+    title: "Scena 14 — Condotto Geotermico",
+    frames: [
+String.raw`  ||||||||||||||||
+  ||  VAPORE   |||
+  ||  ^^^^^^^  |||
+  ||||||||||||||||
+ [DISCESA PROFONDA]`,
+String.raw`  ||||||||||||||||
+  ||  VAPORE~  |||
+  ||  ^^^^^^^  |||
+  ||||||||||||||||
+ [DISCESA PROFONDA]`
+    ],
+    description: "Il condotto porta a un santuario tecnico dove i primi custodi divisero Helios in 4 prove morali.",
+    choices: [
+      { text: "Leggi il giuramento dei custodi.", target: "s15" },
+      { text: "Recupera il sigillo della Custodia.", target: "s18" },
+      { text: "Scavalca i protocolli e vai al cuore.", target: "d02" },
+      { text: "Risali e torna alla superficie.", target: "s03" }
+    ]
   },
-  endingHope: {
-    title: "Ending I — The Starpath",
-    graphic: "*** REFUGEE FLEET ROUTES RESTORED ***",
-    description:
-      "Your recovered routes guide thousands through safe corridors. Your name becomes a promise in every outer colony.",
+  s15: {
+    title: "Scena 15 — Monastero Dati",
+    frames: [
+String.raw`   |\  |\  |\  |\
+   | \ | \ | \ | \
+   |__\|__\|__\|__\
+ [ARCHIVISTI AUTOMI]`,
+String.raw`   |/  |/  |/  |/
+   | \ | \ | \ | \
+   |__\|__\|__\|__\
+ [ARCHIVISTI AUTOMI]`
+    ],
+    description: "Gli automi archivisti chiedono una scelta: memoria pubblica, memoria protetta, o memoria cancellata.",
+    choices: [
+      { text: "Rendi pubblica la storia di Helios.", target: "s19" },
+      { text: "Proteggi i segreti con una chiave etica.", target: "s18" },
+      { text: "Cancella i registri per evitare panico.", target: "d06" },
+      { text: "Contratta accesso limitato alle colonie.", target: "s20" }
+    ]
+  },
+  s16: {
+    title: "Scena 16 — Porto Minerario",
+    frames: [
+String.raw`  [====DOCK====]
+   |  |    |  |
+   |__|____|__|
+   /_/      \_\
+ [MINATORI SCOMPARSI]`,
+String.raw`  [====DOCK====]
+   |  | __ |  |
+   |__|_()_|__|
+   /_/      \_\
+ [MINATORI SCOMPARSI]`
+    ],
+    description: "Trovi messaggi dei minatori: hanno nascosto un modulo di consenso sociale, quarto elemento per stabilizzare Helios.",
+    choices: [
+      { text: "Recupera il modulo di consenso.", target: "s20" },
+      { text: "Ignoralo e punta alla Camera Helios.", target: "s17" },
+      { text: "Vendi la posizione del modulo al mercato nero.", target: "d05" },
+      { text: "Fai esplodere il porto per coprire le tracce.", target: "d04" }
+    ]
+  },
+  s17: {
+    title: "Scena 17 — Camera Helios",
+    frames: [
+String.raw`      _____________
+    /  HELIOS CORE  \
+   |   [  ♥  ]       |
+   |___[_____]_______|
+      /  |||  \
+ [NODO CENTRALE ATTIVO]`,
+String.raw`      _____________
+    /  HELIOS CORE  \
+   |   [ <3 ]       |
+   |___[_____]_______|
+      /  |||  \
+ [NODO CENTRALE ATTIVO]`
+    ],
+    description: "Il Cuore riconosce ciò che hai raccolto: rotte, biosfere, alleanza e consenso. Ti chiede che tipo di futuro vuoi imporre... o custodire.",
+    choices: [
+      { text: "Unifica tutto e guida le colonie con rotte sicure.", target: "e1" },
+      { text: "Priorità alla rinascita ecologica dei mondi.", target: "e2" },
+      { text: "Apri il Velo e accetta l'alleanza esterna.", target: "e3" },
+      { text: "Rendi Helios neutrale, governato da un patto comune.", target: "e4" }
+    ]
+  },
+  s18: {
+    title: "Scena 18 — Sigillo della Custodia",
+    frames: [
+String.raw`    .-----------.
+   /  CUSTODIA  \
+  |  [ SIGILLO ] |
+   \_____+_____/
+ [PATTO DI LIMITI]`,
+String.raw`    .-----------.
+   /  CUSTODIA  \
+  |  [ SIGILLO ] |
+   \_____*_____/
+ [PATTO DI LIMITI]`
+    ],
+    description: "Il sigillo impone che nessuno possieda Helios da solo. Può evitare tirannie, ma rallenta ogni decisione critica.",
+    choices: [
+      { text: "Porta il sigillo al Cuore.", target: "s17" },
+      { text: "Affidalo alla Cartografa Lira.", target: "s11" },
+      { text: "Affidalo a Kael per trattative esterne.", target: "s13" },
+      { text: "Distruggilo e scegli il comando individuale.", target: "d05" }
+    ]
+  },
+  s19: {
+    title: "Scena 19 — Sala del Coro",
+    frames: [
+String.raw`  ~  ~  ~  ~  ~
+ [VOCI ARCHIVIATE]
+  > "RICORDA NOI" <
+ [MEMORIA COLONIE]`,
+String.raw`  ~ ~ ~ ~ ~ ~ ~
+ [VOCI ARCHIVIATE]
+  > "RICORDA NOI" <
+ [MEMORIA COLONIE]`
+    ],
+    description: "Ascolti le voci delle prime navi: tutte chiedono lo stesso, che Helios non diventi un trono ma una promessa condivisa.",
+    choices: [
+      { text: "Giura il patto condiviso e vai al Cuore.", target: "s17" },
+      { text: "Pubblica subito il Coro alle colonie.", target: "e4" },
+      { text: "Manipola il Coro per ottenere consenso.", target: "d05" },
+      { text: "Silenzia per sempre le registrazioni.", target: "d06" }
+    ]
+  },
+  s20: {
+    title: "Scena 20 — Assemblea Ombra",
+    frames: [
+String.raw` [#] [#] [#] [#]
+  \   | |   /
+   \  | |  /
+  [CONSENSO CIVILE]`,
+String.raw` [#] [#] [#] [#]
+  /   | |   \
+ /    | |    \
+  [CONSENSO CIVILE]`
+    ],
+    description: "Rappresentanti remoti delle colonie votano in diretta il mandato su Helios. La tua scelta finale peserà su generazioni.",
+    choices: [
+      { text: "Usa il voto per una rete di fuga interstellare.", target: "e1" },
+      { text: "Usa il voto per terraformazione e cibo.", target: "e2" },
+      { text: "Usa il voto per il patto oltre il Velo.", target: "e3" },
+      { text: "Usa il voto per governance distribuita.", target: "e4" }
+    ]
+  },
+
+  d01: { title: "Morte — Salto Cieco", frames: ["<<< COLLASSO FTL >>>", "<<< TRACCIA DISPERSA >>>"], description: "Fuggi senza coordinate: la Lone Star si spezza tra correnti gravitazionali.", type: "death" },
+  d02: { title: "Morte — Sovraccarico", frames: ["/// TORRE IN CORTO ///", "/// ARCO ELETTRICO ///"], description: "I condensatori esplodono e la tempesta ionica ti incenerisce.", type: "death" },
+  d03: { title: "Morte — Whiteout", frames: ["~~~ SEGNALE PERSO ~~~", "~~~ NESSUN RITORNO ~~~"], description: "Il ciclone polare mastica scafo e memoria: restano solo frammenti di rumore.", type: "death" },
+  d04: { title: "Morte — Vuoto", frames: ["[AIRLOCK: ESTERNO]", "[PRESSIONE: ZERO]"], description: "Una scelta brutale apre lo spazio in ogni corridoio. Nessuno sopravvive.", type: "death" },
+  d05: { title: "Morte — Protocollo Sentinella", frames: ["[DRONI: ONLINE]", "[BERSAGLIO ACQUISITO]"], description: "Helios identifica la tua volontà di dominio e attiva i custodi letali.", type: "death" },
+  d06: { title: "Morte — Silenzio delle Colonie", frames: ["--- CANALI SPENTI ---", "--- NESSUNA RISPOSTA ---"], description: "Nascondere la verità condanna le colonie a un lento blackout.", type: "death" },
+
+  e1: {
+    title: "Finale I — Via delle Stelle",
+    frames: ["*** RETE DI FUGA ATTIVA ***", "*** CORRIDOI SICURI APERTI ***"],
+    description: "Con Guida + Consenso, Helios apre rotte stabili per milioni di profughi. Le colonie sopravvivono all'inverno cosmico.",
     type: "ending"
   },
-  endingGardens: {
-    title: "Ending II — Gardens Under Glass",
-    graphic: "*** BIOSPHERE PROTOCOLS UNLOCKED ***",
-    description:
-      "You seed dead moons with living domes. Children born beneath alien skies call Karthis-9 the world that fed them.",
+  e2: {
+    title: "Finale II — Giardini di Cenere",
+    frames: ["*** BIOSFERE IN NASCITA ***", "*** LUNE FERTILI: ONLINE ***"],
+    description: "Con Giardino + Custodia, mondi sterili rifioriscono. L'umanità smette di consumare pianeti e impara a rigenerarli.",
     type: "ending"
   },
-  endingSurvivor: {
-    title: "Ending III — Last Crew, First Dawn",
-    graphic: "*** CRYO-DECK REVIVAL SUCCESSFUL ***",
-    description:
-      "You awaken the station's survivors. Together, you rebuild the frontier and turn ruins into ports of light.",
+  e3: {
+    title: "Finale III — Patto Oltre il Velo",
+    frames: ["*** PORTALE DIPLOMATICO APERTO ***", "*** ALLEANZA INTERSTELLARE ***"],
+    description: "Con Alleanza + verità, rispondi ad AURORA NERA: non era una trappola, ma un invito. L'umanità entra in una comunità galattica.",
     type: "ending"
   },
-  endingTruth: {
-    title: "Ending IV — The Signal's Truth",
-    graphic: "*** ORIGIN OF DISTRESS SIGNAL REVEALED ***",
-    description:
-      "The distress call was a test by hidden allies beyond mapped space. They welcome humanity into a greater alliance.",
+  e4: {
+    title: "Finale IV — Custodi del Cuore",
+    frames: ["*** HELIOS: GOVERNO DISTRIBUITO ***", "*** NESSUN TRONO, SOLO PATTO ***"],
+    description: "Con tutte le chiavi etiche, Helios non appartiene a un eroe ma a tutti. Il futuro diventa una responsabilità condivisa.",
     type: "ending"
   }
 };
 
-let currentSceneId = "intro";
+let currentSceneId = "s01";
+let animationInterval;
+let frameIndex = 0;
 
 const sceneGraphic = document.getElementById("sceneGraphic");
 const sceneTitle = document.getElementById("sceneTitle");
@@ -233,26 +485,34 @@ const sceneDescription = document.getElementById("sceneDescription");
 const choiceButtons = [0, 1, 2, 3].map((index) => document.getElementById(`choice${index}`));
 const restartBtn = document.getElementById("restartBtn");
 
+function startAnimation(frames) {
+  clearInterval(animationInterval);
+  frameIndex = 0;
+  sceneGraphic.textContent = frames[frameIndex];
+
+  if (frames.length > 1) {
+    animationInterval = setInterval(() => {
+      frameIndex = (frameIndex + 1) % frames.length;
+      sceneGraphic.textContent = frames[frameIndex];
+    }, 380);
+  }
+}
+
 function renderScene(sceneId) {
   const scene = scenes[sceneId];
   currentSceneId = sceneId;
 
-  sceneGraphic.textContent = scene.graphic;
+  startAnimation(scene.frames);
   sceneTitle.textContent = scene.title;
   sceneDescription.textContent = scene.description;
 
   sceneTitle.classList.remove("ending", "death");
-  if (scene.type === "ending") {
-    sceneTitle.classList.add("ending");
-  }
-  if (scene.type === "death") {
-    sceneTitle.classList.add("death");
-  }
+  if (scene.type === "ending") sceneTitle.classList.add("ending");
+  if (scene.type === "death") sceneTitle.classList.add("death");
 
   choiceButtons.forEach((btn, index) => {
     if (scene.choices && scene.choices[index]) {
       btn.style.display = "block";
-      btn.disabled = false;
       btn.textContent = `${index + 1}. ${scene.choices[index].text}`;
       btn.onclick = () => renderScene(scene.choices[index].target);
     } else {
@@ -262,6 +522,7 @@ function renderScene(sceneId) {
   });
 }
 
-restartBtn.addEventListener("click", () => renderScene("intro"));
+restartBtn.addEventListener("click", () => renderScene("s01"));
+window.addEventListener("beforeunload", () => clearInterval(animationInterval));
 
 renderScene(currentSceneId);
