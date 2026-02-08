@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lone Star: A Sci-Fi Text Adventure</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header>
+        <h1>Lone Star</h1>
+        <p class="subtitle">A sci-fi text adventure with no combat, only choices.</p>
+      </header>
+
+      <section class="graphic-panel" aria-label="Scene graphic">
+        <pre id="sceneGraphic"></pre>
+      </section>
+
+      <section class="story-panel">
+        <h2 id="sceneTitle"></h2>
+        <p id="sceneDescription"></p>
+      </section>
+
+      <section class="choices-panel" aria-label="Choices">
+        <button class="choice-btn" id="choice0"></button>
+        <button class="choice-btn" id="choice1"></button>
+        <button class="choice-btn" id="choice2"></button>
+        <button class="choice-btn" id="choice3"></button>
+      </section>
+
+      <footer>
+        <button id="restartBtn" class="restart-btn">Restart Mission</button>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+:root {
+  color-scheme: dark;
+  --bg: #080d1a;
+  --panel: #10182b;
+  --panel-bright: #15233f;
+  --text: #d5e8ff;
+  --accent: #7be0ff;
+  --danger: #ff7a90;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #182a4a, var(--bg) 55%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.game-shell {
+  width: min(920px, 100%);
+  background: rgba(8, 14, 27, 0.92);
+  border: 1px solid #2d456d;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+}
+
+h1 {
+  margin: 0;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.subtitle {
+  margin: 0.25rem 0 1rem;
+  opacity: 0.85;
+}
+
+.graphic-panel {
+  background: linear-gradient(180deg, #101a32, #0c1427);
+  border: 1px solid #284777;
+  border-radius: 10px;
+  padding: 0.75rem;
+  min-height: 210px;
+  margin-bottom: 1rem;
+}
+
+.graphic-panel pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  color: #b6d9ff;
+  line-height: 1.1;
+}
+
+.story-panel {
+  background: var(--panel);
+  border: 1px solid #2b3f67;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+
+.story-panel h2 {
+  margin-top: 0;
+  color: #c5f8ff;
+}
+
+.choices-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.choice-btn,
+.restart-btn {
+  border: 1px solid #3f5e93;
+  background: var(--panel-bright);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 0.7rem;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.choice-btn:hover,
+.restart-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.choice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ending {
+  color: #ffe69b;
+}
+
+.death {
+  color: var(--danger);
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 680px) {
+  .choices-panel {
+    grid-template-columns: 1fr;
+  }
+}
