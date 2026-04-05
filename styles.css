@@ -1,0 +1,107 @@
+:root {
+  color-scheme: dark;
+  --bg: #04070f;
+  --panel: #0e1830;
+  --panel-bright: #17284b;
+  --text: #deebff;
+  --accent: #7bf7ff;
+  --accent-2: #a28bff;
+  --danger: #ff7c99;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(122, 247, 255, 0.2), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(162, 139, 255, 0.25), transparent 35%),
+    linear-gradient(180deg, #0b1430, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.game-shell {
+  width: min(980px, 100%);
+  background: rgba(5, 10, 22, 0.88);
+  border: 1px solid #395b8f;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 0 40px rgba(123, 247, 255, 0.12), 0 14px 34px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  margin: 0;
+  color: var(--accent);
+  text-shadow: 0 0 14px rgba(123, 247, 255, 0.45);
+}
+
+.subtitle { margin: 0.35rem 0 1rem; opacity: 0.9; }
+
+.graphic-panel {
+  background: linear-gradient(180deg, #0d1a37, #0a1327);
+  border: 1px solid #2f4f84;
+  border-radius: 12px;
+  padding: 0.85rem;
+  min-height: 230px;
+  margin-bottom: 1rem;
+}
+
+.graphic-panel pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  color: #c4e5ff;
+  line-height: 1.1;
+  text-shadow: 0 0 10px rgba(196, 229, 255, 0.3);
+}
+
+.story-panel {
+  background: var(--panel);
+  border: 1px solid #2b426f;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+
+.story-panel h2 { margin-top: 0; color: #d1fbff; }
+
+.choices-panel {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.choice-btn,
+.restart-btn {
+  border: 1px solid #45679f;
+  background: linear-gradient(180deg, #1a2e55, #132445);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.74rem;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: 120ms ease;
+}
+
+.choice-btn:hover,
+.restart-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(123, 247, 255, 0.24);
+  transform: translateY(-1px);
+}
+
+.ending { color: #ffe68f; }
+.death { color: var(--danger); }
+
+footer { display: flex; justify-content: flex-end; }
+
+@media (max-width: 700px) {
+  .choices-panel { grid-template-columns: 1fr; }
+}
