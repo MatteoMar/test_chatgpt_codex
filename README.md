@@ -1,35 +1,28 @@
-# Lone Star: Oltre il Velo
+# Lone Star: Oltre il Velo (Python Edition)
 
-Avventura testuale sci-fi in italiano, ispirata ai librogame "lupo solitario", senza sistema di combattimento.
+Avventura testuale sci-fi **interamente in Python**, ispirata ai librogame: niente combattimento, solo scelte, conseguenze e finali multipli.
 
 ## Caratteristiche
-- Grafica ASCII **animata** nella parte alta dello schermo.
-- Descrizione narrativa della situazione sotto la grafica.
-- 4 scelte per ogni scena giocabile.
-- **20 scene screenplay** principali con bivi narrativi.
-- 4 finali profondamente legati alla trama centrale del **Cuore di Helios**.
-- Esiti di morte multipli in base alle decisioni etiche e strategiche.
+- Implementazione 100% Python (`lone_star.py`).
+- Narrativa in italiano.
+- 20 scene principali con 4 scelte ciascuna.
+- ASCII art animata nel terminale a **20 FPS** (default).
+- Gamebox più ampio per migliorare leggibilità.
+- Titolo del gioco mostrato **fuori** dal gamebox.
+- 4 finali legati al cuore narrativo del **Cuore di Helios**.
+- Esiti di morte multipli in base alle decisioni.
 
-## Esecuzione locale
-Apri `index.html` nel browser oppure avvia un server statico:
-# Lone Star - Sci-Fi Text Adventure
-
-A browser-based sci-fi text adventure inspired by lone-wolf style branching books.
-
-## Features
-- Story-first gameplay with no combat system.
-- Text-based ASCII-style scene graphics at the top of the screen.
-- Situation description under the graphic.
-- Exactly 4 options per playable scene.
-- Around 10 screenplay scenes plus outcomes.
-- 4 distinct successful endings and multiple death endings.
-
-## Run locally
-Open `index.html` directly in a browser, or serve the folder:
-
+## Esecuzione
 ```bash
-python3 -m http.server 8000
+python3 lone_star.py
 ```
 
-Poi visita `http://localhost:8000`.
-Then visit `http://localhost:8000`.
+## Opzioni utili
+```bash
+python3 lone_star.py --help
+python3 lone_star.py --frame-delay 0.05 --animation-loops 1
+python3 lone_star.py --path 1,1,1,2
+```
+
+- `--path` permette di simulare un percorso con scelte automatiche (utile per test).
+- `--frame-delay 0.05` corrisponde a circa 20 FPS.
